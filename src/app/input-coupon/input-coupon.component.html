@@ -1,0 +1,65 @@
+<h2>Traveller - Reactive Forms Sample</h2>
+<hr />
+<div style="margin-left: 50px">
+  <label for="couponCode">
+    <h2>Enter a coupon code</h2>
+    <input type="text" id="couponCode" [formControl]="coupon" (change)="changeHandler()" />
+  </label>
+</div>
+
+<form [formGroup]="traveller" (submit)="formSubmitHandler()">
+  <div>
+    <label for="firstName">
+      <h2>First Name</h2>
+      <input type="text" id="firstName" formControlName="firstName" />
+    </label>
+  </div>
+
+  <div>
+    <label for="lastName">
+      <h2>Last Name</h2>
+      <input type="text" id="lastName" formControlName="lastName" />
+    </label>
+  </div>
+
+  <div>
+    <label for="phone">
+      <h2>Phone</h2>
+      <input type="text" id="phone" formControlName="phone" />
+    </label>
+  </div>
+
+  <div>
+    <label for="gender">
+      <h2>Gender</h2>
+      <select name="gender" id="gender" formControlName="gender">
+        <option value="female">Female</option>
+        <option value="male">Male</option>
+      </select>
+    </label>
+
+  </div>
+
+  <div>
+    <label for="age">
+      <h2>Age</h2>
+      <input type="text" id="age" formControlName="age" />
+    </label>
+  </div>
+
+  <div formArrayName="additionalTravellers">
+    <label for="additionalTravellers">
+      <h2>Additional Travellers <button (click)="addAdditionalTrav()">+</button></h2>
+      <div *ngFor="let tr of additionalTravellers.controls; let i=index">
+        <input type="text" [formControlName]="i" />
+      </div>
+    </label>
+  </div>
+
+  <div></div>
+
+
+  <button style="margin-top: 30px;" type="submit">Submit</button> <span> &nbsp; </span>
+  <button style="margin-top: 30px;" (click)="clearForm()">Clear</button>
+
+</form>
